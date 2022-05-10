@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">dung</string>
+    <string name="ho">Họ</string>
+    <string name="ten_dem">Tên đệm</string>
+    <string name="ten">Tên</string>
+    <string name="ngay_sinh">Ngày sinh</string>
+    <string name="gioi_tinh">Giới tính</string>
+    <string name="so_dien_thoai">Số điện thoại</string>
 </resources>
