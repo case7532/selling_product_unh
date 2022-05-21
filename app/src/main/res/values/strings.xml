@@ -6,4 +6,6 @@
     <string name="ngay_sinh">Ngày sinh</string>
     <string name="gioi_tinh">Giới tính</string>
     <string name="so_dien_thoai">Số điện thoại</string>
+
+    <string name="loading_content">Đang tải dữ liệu.</string>
 </resources>

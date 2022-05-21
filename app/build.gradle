@@ -2,13 +2,16 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'kotlin-parcelize'
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.nuhvn.dung"
+        applicationId "com.nuhvn.sellingproduct"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -28,10 +31,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    viewBinding{
+        enabled true
     }
     namespace 'com.nuhvn.dung'
-
 }
 
 dependencies {
@@ -49,4 +54,15 @@ dependencies {
     kapt("androidx.lifecycle:lifecycle-compiler:2.4.1")
     implementation("androidx.lifecycle:lifecycle-common-java8:2.4.1")
     api("com.google.android.material:material:1.6.0")
+    implementation 'com.google.code.gson:gson:2.8.9'
+    //Google
+    implementation(platform('com.google.firebase:firebase-bom:30.0.0'))
+    implementation('com.google.firebase:firebase-analytics-ktx')
+    implementation ('com.google.firebase:firebase-database-ktx')
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    //room
+    implementation("androidx.room:room-runtime:2.4.2")
+    annotationProcessor("androidx.room:room-compiler:2.4.2")
+    kapt("androidx.room:room-compiler:2.4.2")
+    implementation("androidx.room:room-ktx:2.4.2")
 }
