@@ -6,7 +6,6 @@ import com.nuhvn.dung.base.MyActivity
 import com.nuhvn.dung.base.MyFragment
 import com.nuhvn.dung.databinding.FragmentInitBinding
 import com.nuhvn.dung.ui.home.HomeFragment
-import com.nuhvn.dung.ui.profile.ProfileFragment
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

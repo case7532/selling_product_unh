@@ -8,4 +8,11 @@
     <string name="so_dien_thoai">Số điện thoại</string>
 
     <string name="loading_content">Đang tải dữ liệu.</string>
+
+    <string name="txt_welcome_user">Chào, %s!</string>
+
+    <string name="txt_morning">Chào buổi sáng :)</string>
+    <string name="txt_evening">Chào buổi chiều :)</string>
+    <string name="txt_night">Chào buổi tối :)</string>
+
 </resources>
