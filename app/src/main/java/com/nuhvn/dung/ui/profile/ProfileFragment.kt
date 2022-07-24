@@ -17,4 +17,6 @@ class ProfileFragment : MyFragment<FragmentProfileBinding>() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 	}
+	
+	override fun onBack(): Boolean = false
 }

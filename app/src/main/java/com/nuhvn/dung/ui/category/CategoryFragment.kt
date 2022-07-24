@@ -9,4 +9,6 @@ class CategoryFragment : MyFragment<FragmentCategoryBinding>() {
 		super.onCreate(savedInstanceState)
 		viewBinding = FragmentCategoryBinding.inflate(layoutInflater)
 	}
+	
+	override fun onBack(): Boolean = false
 }

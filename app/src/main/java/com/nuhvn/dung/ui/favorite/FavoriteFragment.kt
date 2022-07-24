@@ -9,4 +9,6 @@ class FavoriteFragment : MyFragment<FragmentFavoriteBinding>() {
 		super.onCreate(savedInstanceState)
 		viewBinding = FragmentFavoriteBinding.inflate(layoutInflater)
 	}
+	
+	override fun onBack(): Boolean  = false
 }

@@ -10,17 +10,20 @@ import com.nuhvn.dung.model.data_model.ProductModel
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeAdapterViewHolder>() {
 	private val listData = mutableListOf<ProductModel>()
-	inner class HomeAdapterViewHolder(v: View) : RecyclerView.ViewHolder(v){
-		fun bindData(item: ProductModel){
-		
+	
+	inner class HomeAdapterViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+		fun bindData(item: ProductModel) {
+			itemView?.apply {
+			}
 		}
 	}
 	
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapterViewHolder {
-		val layoutInflater = parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as? LayoutInflater
+		val layoutInflater =
+			parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as? LayoutInflater
 		return HomeAdapterViewHolder(
 			layoutInflater?.inflate(
-				R.layout.item_product_medium,
+				R.layout.item_order,
 				parent,
 				false
 			)!!

@@ -5,6 +5,7 @@ import android.view.View
 import com.nuhvn.dung.base.MyActivity
 import com.nuhvn.dung.base.MyFragment
 import com.nuhvn.dung.databinding.FragmentInitBinding
+import com.nuhvn.dung.model.database.MyRoomDatabase
 import com.nuhvn.dung.ui.home.HomeFragment
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -26,4 +27,6 @@ class InitFragment : MyFragment<FragmentInitBinding>() {
 			(requireActivity() as? MyActivity<*>)?.showTitleFragment("Home")
 		}
 	}
+	
+	override fun onBack(): Boolean = false
 }

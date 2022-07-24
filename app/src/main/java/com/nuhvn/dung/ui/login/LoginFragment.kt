@@ -1,24 +1,20 @@
-package com.nuhvn.dung.ui.home
+package com.nuhvn.dung.ui.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import com.nuhvn.dung.base.MyFragment
-import com.nuhvn.dung.databinding.FragmentCartBinding
-import com.nuhvn.dung.databinding.FragmentHomeBinding
-import com.nuhvn.dung.ui.bag.CartFragment
+import com.nuhvn.dung.databinding.FragmentLoginBinding
+import com.nuhvn.dung.ui.home.HomeFragment
 
-class HomeFragment : MyFragment<FragmentHomeBinding>() {
-	private val mViewModel by viewModels<HomeViewModel>()
-	
+class LoginFragment: MyFragment<FragmentLoginBinding>() {
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
-	): View {
-		viewBinding = FragmentHomeBinding.inflate(layoutInflater)
+	): View? {
+		viewBinding = FragmentLoginBinding.inflate(inflater, container, false)
 		return viewBinding.root
 	}
 	
@@ -26,18 +22,19 @@ class HomeFragment : MyFragment<FragmentHomeBinding>() {
 		super.onViewCreated(view, savedInstanceState)
 		viewBinding.apply {
 			showTopBar(false)
-			showBottomBar(true)
-			btnNewOrder.setOnClickListener {
+			showBottomBar(false)
+			btnLogin.setOnClickListener {
 				openFragment(
-					CartFragment::class.java,
+					HomeFragment::class.java,
 					Bundle(),
-					true
+					false
 				)
 			}
 		}
 	}
 	
 	override fun onBack(): Boolean {
+		requireActivity().finish()
 		return true
 	}
 }

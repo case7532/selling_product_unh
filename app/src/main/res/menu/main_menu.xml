@@ -12,16 +12,6 @@
         android:title="Danh mục"
         app:showAsAction="always" />
     <item
-        android:id="@+id/nav_bag"
-        android:icon="@drawable/ic_round_shopping_bag_24"
-        android:title="Túi"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/nav_favorite"
-        android:icon="@drawable/ic_round_favorite_24"
-        android:title="Yêu thích"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_round_person_24"
         android:title="Cá nhân"

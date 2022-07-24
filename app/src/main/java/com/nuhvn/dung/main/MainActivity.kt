@@ -1,18 +1,22 @@
 package com.nuhvn.dung.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.nuhvn.dung.R
 import com.nuhvn.dung.base.MyActivity
+import com.nuhvn.dung.base.MyFragment
 import com.nuhvn.dung.databinding.ActivityMainBinding
-import com.nuhvn.dung.ui.bag.BagFragment
+import com.nuhvn.dung.model.database.MyRoomDatabase
+import com.nuhvn.dung.ui.bag.CartFragment
 import com.nuhvn.dung.ui.category.CategoryFragment
 import com.nuhvn.dung.ui.favorite.FavoriteFragment
 import com.nuhvn.dung.ui.home.HomeFragment
 import com.nuhvn.dung.ui.init_fragment.InitFragment
 import com.nuhvn.dung.ui.profile.ProfileFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : MyActivity<ActivityMainBinding>() {
 	private val TAG = "MainActivity"
@@ -24,37 +28,15 @@ class MainActivity : MyActivity<ActivityMainBinding>() {
 		viewBinding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(viewBinding.root)
 		openFragment(InitFragment::class.java, Bundle(), false)
-		supportFragmentManager.addOnBackStackChangedListener {
-			Log.d(TAG, "onBackStackChange")
-			when(supportFragmentManager.findFragmentById(containerFragment)){
-				is InitFragment -> {
-					viewBinding.bottomNavigationView.visibility = View.GONE
-					viewBinding.layoutActionBar.visibility = View.GONE
-					
-				}
-				else -> {
-					viewBinding.bottomNavigationView.visibility = View.VISIBLE
-					viewBinding.layoutActionBar.visibility = View.VISIBLE
-				}
-			}
-		}
 		viewBinding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
 			when (menuItem.itemId) {
 				R.id.nav_home -> {
 					showTitleFragment(menuItem.title.toString())
 					openFragment(HomeFragment::class.java)
 				}
-				R.id.nav_bag -> {
-					showTitleFragment(menuItem.title.toString())
-					openFragment(BagFragment::class.java)
-				}
 				R.id.nav_category -> {
 					showTitleFragment(menuItem.title.toString())
 					openFragment(CategoryFragment::class.java)
-				}
-				R.id.nav_favorite -> {
-					showTitleFragment(menuItem.title.toString())
-					openFragment(FavoriteFragment::class.java)
 				}
 				R.id.nav_profile -> {
 					showTitleFragment(menuItem.title.toString())
@@ -63,6 +45,11 @@ class MainActivity : MyActivity<ActivityMainBinding>() {
 			}
 			true
 		}
+		runBlocking {
+			async(Dispatchers.IO) {
+				myDataBase = MyRoomDatabase.getInstance(this@MainActivity)
+			}.await()
+		}
 	}
 	
 	override fun showTitleFragment(value: String) {
@@ -70,11 +57,29 @@ class MainActivity : MyActivity<ActivityMainBinding>() {
 	}
 	
 	override fun onBack(forceBack: Boolean?): Boolean {
-		with(supportFragmentManager){
-			if (backStackEntryCount > 1){
-				popBackStack()
+		if(!(supportFragmentManager.findFragmentById(containerFragment) as MyFragment<*>).onBack()){
+			with(supportFragmentManager) {
+				if (backStackEntryCount > 1) {
+					popBackStack()
+				}
 			}
 		}
 		return true
+	}
+	
+	fun showTopBar(isShow: Boolean) {
+		viewBinding.layoutActionBar.visibility = if (isShow) {
+			View.VISIBLE
+		} else {
+			View.GONE
+		}
+	}
+	
+	fun showBottomBar(isShow: Boolean) {
+		viewBinding.bottomNavigationView.visibility = if (isShow){
+			View.VISIBLE
+		} else {
+			View.GONE
+		}
 	}
 }

@@ -6,4 +6,5 @@ import com.nuhvn.dung.databinding.FragmentPaymentBinding
 
 class PaymentFragment : MyFragment<FragmentPaymentBinding>(){
 	private val vm by viewModels<PaymentViewModel>()
+	override fun onBack(): Boolean = false
 }

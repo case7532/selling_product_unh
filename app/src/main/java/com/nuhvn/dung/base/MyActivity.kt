@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.viewbinding.ViewBinding
 import com.nuhvn.dung.R
+import com.nuhvn.dung.model.database.MyRoomDatabase
 
 abstract class MyActivity<VB : ViewBinding> : AppCompatActivity() {
 	lateinit var viewBinding: VB
 	var loading: MyAlert? = null
 	abstract val containerFragment: Int
+	lateinit var myDataBase: MyRoomDatabase
 	
 	abstract fun onBack(forceBack: Boolean? = false): Boolean
 	override fun onBackPressed() {
